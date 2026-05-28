@@ -1,0 +1,407 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.prd{padding:1.5rem 0}
+.header{border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:1.25rem;margin-bottom:1.5rem}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:4px;background:var(--color-background-info);color:var(--color-text-info);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+.title{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.subtitle{font-size:14px;color:var(--color-text-secondary)}
+.tabs{display:flex;gap:4px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:6px 14px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;border:0.5px solid var(--color-border-tertiary);background:transparent;color:var(--color-text-secondary);transition:all .15s}
+.tab.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+.tab:hover:not(.active){background:var(--color-background-secondary)}
+.section{display:none}
+.section.active{display:block}
+.phase-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:12px}
+.phase-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.phase-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.phase-num.p1{background:#E6F1FB;color:#0C447C}
+.phase-num.p2{background:#E1F5EE;color:#085041}
+.phase-num.p3{background:#EEEDFE;color:#3C3489}
+.phase-num.p4{background:#FAEEDA;color:#633806}
+.phase-num.p5{background:#FAECE7;color:#712B13}
+.phase-num.p6{background:#EAF3DE;color:#27500A}
+.phase-title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.phase-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.tasks{list-style:none;padding:0}
+.tasks li{font-size:13px;color:var(--color-text-secondary);padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.tasks li:last-child{border-bottom:none}
+.tasks li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-border-secondary);flex-shrink:0;margin-top:6px}
+.week-tag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.w1{background:#E6F1FB;color:#185FA5}
+.w2{background:#E1F5EE;color:#0F6E56}
+.w3{background:#EEEDFE;color:#534AB7}
+.w4{background:#FAEEDA;color:#854F0B}
+.w5{background:#FAECE7;color:#993C1D}
+.w6{background:#EAF3DE;color:#3B6D11}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.stat-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem}
+.stat-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.stat-val{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.stack-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.stack-row:last-child{border-bottom:none}
+.stack-label{color:var(--color-text-secondary);width:130px;flex-shrink:0}
+.stack-val{color:var(--color-text-primary);font-family:var(--font-mono);font-size:12px}
+.stack-pill{display:inline-block;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:4px;padding:2px 8px;font-size:11px;font-family:var(--font-mono);margin:2px;color:var(--color-text-primary)}
+.section-title{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:1rem}
+.section-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem;line-height:1.6}
+.api-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:10px}
+.api-name{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.api-desc{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.5}
+.api-url{font-size:11px;font-family:var(--font-mono);color:var(--color-text-info);background:var(--color-background-info);padding:4px 8px;border-radius:4px}
+.risk-row{display:grid;grid-template-columns:2fr 1fr 3fr;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;align-items:start}
+.risk-row:last-child{border-bottom:none}
+.risk-head{display:grid;grid-template-columns:2fr 1fr 3fr;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--color-border-secondary)}
+.risk-head span{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em}
+.sev{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px}
+.sev.h{background:#FCEBEB;color:#A32D2D}
+.sev.m{background:#FAEEDA;color:#854F0B}
+.sev.l{background:#EAF3DE;color:#3B6D11}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:var(--color-border-tertiary)}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-dot{width:16px;height:16px;border-radius:50%;position:absolute;left:-24px;top:2px;border:2px solid var(--color-background-primary)}
+.tl-dot.done{background:#1D9E75}
+.tl-dot.now{background:#378ADD}
+.tl-dot.future{background:var(--color-border-secondary)}
+.tl-week{font-size:11px;color:var(--color-text-secondary);font-weight:500;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em}
+.tl-task{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.tl-detail{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.story-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:10px}
+.story-role{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.role-creator{color:var(--color-text-info)}
+.role-dev{color:#534AB7}
+.role-legal{color:#993C1D}
+.story-text{font-size:13px;color:var(--color-text-primary);line-height:1.6;margin-bottom:8px}
+.story-ac{font-size:12px;color:var(--color-text-secondary);line-height:1.7}
+.story-ac strong{color:var(--color-text-primary);font-weight:500}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:1.25rem 0}
+</style>
+
+<div class="prd">
+<div class="header">
+  <span class="badge">IDP Project PRD · 2025–26</span>
+  <div class="title">LexaTrace — Product Requirements Document</div>
+  <div class="subtitle">BMS Institute of Technology and Management · AI & ML Dept · Team: Nandan N, Athul Nayak G, BS Sujanna Reddy, Karun Reddy C</div>
+</div>
+
+<div class="grid3" style="margin-bottom:1.5rem">
+  <div class="stat-card"><div class="stat-label">Build Phases</div><div class="stat-val">6</div></div>
+  <div class="stat-card"><div class="stat-label">Est. Duration</div><div class="stat-val">16 wks</div></div>
+  <div class="stat-card"><div class="stat-label">Tech Stack</div><div class="stat-val">12 tools</div></div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" onclick="switchTab('phases')">Build Phases</button>
+  <button class="tab" onclick="switchTab('stories')">User Stories</button>
+  <button class="tab" onclick="switchTab('stack')">Tech Stack</button>
+  <button class="tab" onclick="switchTab('apis')">API Integrations</button>
+  <button class="tab" onclick="switchTab('timeline')">Timeline</button>
+  <button class="tab" onclick="switchTab('risks')">Risks</button>
+</div>
+
+<div id="phases" class="section active">
+  <div class="section-sub">Six progressive build phases. Each phase has clear deliverables and is self-contained enough to demo independently.</div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p1">01</div>
+      <div><div class="phase-title">Project Setup & Auth Foundation</div><div class="phase-sub">Weeks 1–2 · Backend scaffolding, auth, CI/CD</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w1">Week 1</span>Init monorepo: <code>backend/</code> (FastAPI) + <code>frontend/</code> (React + Vite). Setup PostgreSQL + Docker Compose.</li>
+      <li><span class="week-tag w1">Week 1</span>Configure Alembic for DB migrations. Create base User, Project, and AnalysisJob models.</li>
+      <li><span class="week-tag w2">Week 2</span>Implement JWT-based auth: register, login, refresh token. Hash passwords with bcrypt.</li>
+      <li><span class="week-tag w2">Week 2</span>Build React auth screens (login / signup). Setup React Router, Zustand for global state, Axios interceptors for token refresh.</li>
+      <li><span class="week-tag w2">Week 2</span>Setup GitHub Actions CI: lint (ruff + eslint), test runner (pytest + vitest), Docker build check on every PR.</li>
+    </ul>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p2">02</div>
+      <div><div class="phase-title">File Ingestion & Storage Pipeline</div><div class="phase-sub">Weeks 3–4 · Multi-format upload, preprocessing, queue</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w2">Week 3</span>Build FastAPI file-upload endpoint. Accept PDF, DOCX, TXT, PNG/JPG, ZIP (source code). Validate MIME types server-side.</li>
+      <li><span class="week-tag w2">Week 3</span>Integrate MinIO (S3-compatible) for file storage. Store raw files with a UUID key + metadata in PostgreSQL.</li>
+      <li><span class="week-tag w2">Week 3</span>Build text extractors: <code>pdfminer.six</code> for PDFs, <code>python-docx</code> for DOCX, <code>pygments</code> for source code tokenization.</li>
+      <li><span class="week-tag w4">Week 4</span>Setup Celery + Redis task queue. On file upload, dispatch async preprocessing task. Store job status in DB.</li>
+      <li><span class="week-tag w4">Week 4</span>Build React upload page: drag-and-drop zone, file type indicator, real-time job progress via WebSocket or polling.</li>
+    </ul>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p3">03</div>
+      <div><div class="phase-title">NLP & Semantic Similarity Engine</div><div class="phase-sub">Weeks 5–8 · BERT embeddings, similarity scoring, copyright detection</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w2">Week 5</span>Load <code>sentence-transformers/all-MiniLM-L6-v2</code> via HuggingFace. Generate embeddings for ingested text chunks (512-token windows with 50-token overlap).</li>
+      <li><span class="week-tag w2">Week 5</span>Setup Elasticsearch. Index embeddings using <code>dense_vector</code> field + KNN search. Store alongside metadata (source, type, date).</li>
+      <li><span class="week-tag w2">Week 6</span>Build cosine similarity scorer. Define thresholds: &gt;0.90 = high risk, 0.75–0.89 = medium, 0.60–0.74 = low, &lt;0.60 = clear.</li>
+      <li><span class="week-tag w2">Week 6</span>Implement copyright text detection: chunk input → embed → KNN search → rank results by score → return top 10 matches with source metadata.</li>
+      <li><span class="week-tag w5">Week 7</span>Build code license detector: use <code>licensee</code> + AST-level fingerprinting for Python/JS/Java. Map license types (MIT, GPL, Apache, proprietary).</li>
+      <li><span class="week-tag w5">Week 8</span>Implement image similarity using CLIP (<code>openai/clip-vit-base-patch32</code>). Build perceptual hash fallback with <code>imagehash</code> library.</li>
+    </ul>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p4">04</div>
+      <div><div class="phase-title">Patent Detection & Database Integration</div><div class="phase-sub">Weeks 9–11 · USPTO/EPO/WIPO queries, patent matching</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w4">Week 9</span>Integrate USPTO Open Data API. Build <code>PatentSearchService</code>: extract noun-phrase claims from input using spaCy → query USPTO full-text search API.</li>
+      <li><span class="week-tag w4">Week 9</span>Integrate EPO Open Patent Services (OPS) API. Handle OAuth 2.0 client credentials flow. Parse XML responses to structured patent objects.</li>
+      <li><span class="week-tag w4">Week 10</span>Integrate WIPO PATENTSCOPE API. Implement rate limiting + exponential backoff. Cache results in Redis (TTL: 24h) to reduce API quota usage.</li>
+      <li><span class="week-tag w4">Week 10</span>Build patent relevance ranker: embed patent abstract → compute similarity with input embedding → rank candidates → return top 5 with claim excerpts.</li>
+      <li><span class="week-tag w4">Week 11</span>Build <code>RoyaltyFreeRecommendationEngine</code>: for each flagged asset type, query Free Music Archive API / Unsplash API / SPDX license DB for legal alternatives.</li>
+    </ul>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p5">05</div>
+      <div><div class="phase-title">Report Generator & Frontend Dashboard</div><div class="phase-sub">Weeks 12–14 · Risk reports, UI dashboard, PDF export</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w5">Week 12</span>Build <code>RiskReportGenerator</code>: aggregate all module results into a structured report object. Assign overall risk score (weighted average across modules).</li>
+      <li><span class="week-tag w5">Week 12</span>Add jurisdiction-awareness: map detected IP to jurisdiction (US/EU/Global) based on database source. Display applicable law references (e.g., 17 U.S.C. § 106).</li>
+      <li><span class="week-tag w5">Week 13</span>Build PDF export with <code>WeasyPrint</code>. Template via Jinja2: cover page, risk summary table, match details, recommendations, disclaimer.</li>
+      <li><span class="week-tag w5">Week 13</span>Build React dashboard: project list, analysis history, risk badge system. Use Recharts for score visualizations. Build report viewer with highlighted match excerpts.</li>
+      <li><span class="week-tag w5">Week 14</span>Build notification system: email via SendGrid when analysis completes. In-app notification centre. Optional Slack webhook integration.</li>
+    </ul>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <div class="phase-num p6">06</div>
+      <div><div class="phase-title">Testing, Security & Deployment</div><div class="phase-sub">Weeks 15–16 · QA, hardening, cloud deploy</div></div>
+    </div>
+    <ul class="tasks">
+      <li><span class="week-tag w6">Week 15</span>Write pytest integration tests for all API routes. Write vitest + React Testing Library tests for all major components. Target ≥70% coverage.</li>
+      <li><span class="week-tag w6">Week 15</span>Security hardening: add rate limiting (SlowAPI), input sanitization, CORS config, CSP headers. Run OWASP ZAP scan. Fix findings.</li>
+      <li><span class="week-tag w6">Week 16</span>Dockerize all services. Write <code>docker-compose.prod.yml</code>. Deploy backend to Render or Railway. Deploy frontend to Vercel. Setup environment secrets via .env vault.</li>
+      <li><span class="week-tag w6">Week 16</span>Setup Sentry for error tracking (backend + frontend). Add basic analytics (page views, job counts). Write final API docs via FastAPI's auto-generated OpenAPI spec.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="stories" class="section">
+  <div class="section-sub">Core user stories that define what LexaTrace must do, broken by persona.</div>
+
+  <div class="story-card">
+    <div class="story-role role-creator">Content Creator</div>
+    <div class="story-text">As a YouTuber, I want to upload my video script and background music file before publishing, so I know if any content will trigger a copyright strike.</div>
+    <div class="story-ac"><strong>Acceptance criteria:</strong> System accepts TXT/DOCX and MP3/WAV. Returns similarity score with matched sources. Flags at-risk segments with timestamps or line numbers. Suggests royalty-free alternatives from FMA.</div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-role role-dev">Software Developer</div>
+    <div class="story-text">As a developer, I want to upload a ZIP of my codebase and get a license compatibility report, so I can ensure my open-source release is legally clean.</div>
+    <div class="story-ac"><strong>Acceptance criteria:</strong> System extracts all .py/.js/.java files. Detects license headers and fingerprints. Identifies GPL-contaminated dependencies. Outputs a SPDX-format compatibility matrix.</div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-role role-legal">Startup Founder</div>
+    <div class="story-text">As a startup founder, I want to describe my product concept and check it against global patent databases, so I can file my patent application with confidence.</div>
+    <div class="story-ac"><strong>Acceptance criteria:</strong> Input text (500–5000 chars). System queries USPTO, EPO, WIPO. Returns top 5 similar patents with claim excerpts and similarity score. Jurisdiction column on results.</div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-role role-creator">Researcher</div>
+    <div class="story-text">As an academic researcher, I want to check my paper draft for plagiarism and patent conflicts before submission, so I avoid IP disputes post-publication.</div>
+    <div class="story-ac"><strong>Acceptance criteria:</strong> Accepts PDF up to 15MB. Runs both copyright (text) and patent detection in parallel. Returns combined report with separate section for each. Export to PDF.</div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-role role-legal">Legal Team</div>
+    <div class="story-text">As a legal associate, I want to batch-analyze multiple client manuscripts via API, so I can integrate IP screening into our due diligence workflow.</div>
+    <div class="story-ac"><strong>Acceptance criteria:</strong> REST API with API-key auth. POST /analyze accepts file + metadata. GET /jobs/{id} returns async status + result. Webhook callback on completion. Rate limit: 100 req/hour per key.</div>
+  </div>
+</div>
+
+<div id="stack" class="section">
+  <div class="section-sub">Recommended technology stack with rationale for each choice.</div>
+
+  <div class="phase-card">
+    <div class="section-title" style="font-size:14px;margin-bottom:12px">Backend</div>
+    <div class="stack-row"><span class="stack-label">Web Framework</span><span><span class="stack-pill">FastAPI 0.110+</span></span></div>
+    <div class="stack-row"><span class="stack-label">Task Queue</span><span><span class="stack-pill">Celery 5</span><span class="stack-pill">Redis</span></span></div>
+    <div class="stack-row"><span class="stack-label">ORM</span><span><span class="stack-pill">SQLAlchemy 2</span><span class="stack-pill">Alembic</span></span></div>
+    <div class="stack-row"><span class="stack-label">Auth</span><span><span class="stack-pill">python-jose</span><span class="stack-pill">bcrypt</span></span></div>
+    <div class="stack-row"><span class="stack-label">File Storage</span><span><span class="stack-pill">MinIO (S3 API)</span></span></div>
+    <div class="stack-row"><span class="stack-label">PDF Export</span><span><span class="stack-pill">WeasyPrint</span><span class="stack-pill">Jinja2</span></span></div>
+  </div>
+
+  <div class="phase-card">
+    <div class="section-title" style="font-size:14px;margin-bottom:12px">ML / AI</div>
+    <div class="stack-row"><span class="stack-label">Text Embeddings</span><span><span class="stack-pill">sentence-transformers</span><span class="stack-pill">all-MiniLM-L6-v2</span></span></div>
+    <div class="stack-row"><span class="stack-label">Image Similarity</span><span><span class="stack-pill">CLIP (ViT-B/32)</span><span class="stack-pill">imagehash</span></span></div>
+    <div class="stack-row"><span class="stack-label">NLP Pipeline</span><span><span class="stack-pill">spaCy 3</span><span class="stack-pill">transformers</span></span></div>
+    <div class="stack-row"><span class="stack-label">Vector Search</span><span><span class="stack-pill">Elasticsearch 8</span><span class="stack-pill">KNN dense_vector</span></span></div>
+    <div class="stack-row"><span class="stack-label">Framework</span><span><span class="stack-pill">PyTorch 2.2</span><span class="stack-pill">scikit-learn</span></span></div>
+    <div class="stack-row"><span class="stack-label">Code Analysis</span><span><span class="stack-pill">pygments</span><span class="stack-pill">licensee</span></span></div>
+  </div>
+
+  <div class="phase-card">
+    <div class="section-title" style="font-size:14px;margin-bottom:12px">Frontend</div>
+    <div class="stack-row"><span class="stack-label">Framework</span><span><span class="stack-pill">React 18</span><span class="stack-pill">Vite</span><span class="stack-pill">TypeScript</span></span></div>
+    <div class="stack-row"><span class="stack-label">State</span><span><span class="stack-pill">Zustand</span><span class="stack-pill">React Query</span></span></div>
+    <div class="stack-row"><span class="stack-label">UI Components</span><span><span class="stack-pill">shadcn/ui</span><span class="stack-pill">Tailwind CSS</span></span></div>
+    <div class="stack-row"><span class="stack-label">Charts</span><span><span class="stack-pill">Recharts</span></span></div>
+    <div class="stack-row"><span class="stack-label">HTTP</span><span><span class="stack-pill">Axios</span><span class="stack-pill">React Router 6</span></span></div>
+  </div>
+
+  <div class="phase-card">
+    <div class="section-title" style="font-size:14px;margin-bottom:12px">Infrastructure</div>
+    <div class="stack-row"><span class="stack-label">Database</span><span><span class="stack-pill">PostgreSQL 16</span></span></div>
+    <div class="stack-row"><span class="stack-label">Containerization</span><span><span class="stack-pill">Docker</span><span class="stack-pill">Docker Compose</span></span></div>
+    <div class="stack-row"><span class="stack-label">Deploy (Backend)</span><span><span class="stack-pill">Render</span> <span style="font-size:12px;color:var(--color-text-secondary)">or Railway</span></span></div>
+    <div class="stack-row"><span class="stack-label">Deploy (Frontend)</span><span><span class="stack-pill">Vercel</span></span></div>
+    <div class="stack-row"><span class="stack-label">Monitoring</span><span><span class="stack-pill">Sentry</span></span></div>
+    <div class="stack-row"><span class="stack-label">CI/CD</span><span><span class="stack-pill">GitHub Actions</span></span></div>
+  </div>
+</div>
+
+<div id="apis" class="section">
+  <div class="section-sub">External APIs LexaTrace must integrate with. Each requires registration and credentials management via environment variables.</div>
+
+  <div class="api-card">
+    <div class="api-name">USPTO Open Data API</div>
+    <div class="api-desc">Full-text search of US patents and patent applications. Free to use with registration. Returns patent metadata, claims, and abstracts in JSON.</div>
+    <div class="api-url">https://developer.uspto.gov/api-catalog</div>
+  </div>
+
+  <div class="api-card">
+    <div class="api-name">EPO Open Patent Services (OPS)</div>
+    <div class="api-desc">Access to European Patent Office data. OAuth 2.0 client credentials. Supports full-text search, bibliographic data, and family lookups. Free tier: 4GB/month bandwidth.</div>
+    <div class="api-url">https://developers.epo.org</div>
+  </div>
+
+  <div class="api-card">
+    <div class="api-name">WIPO PATENTSCOPE</div>
+    <div class="api-desc">International PCT application search. REST API with API key. Covers 100M+ patent documents across 70+ patent offices. Rate limit: 500 req/hour on free plan.</div>
+    <div class="api-url">https://patentscope.wipo.int/search/en/help/apihelp.jsf</div>
+  </div>
+
+  <div class="api-card">
+    <div class="api-name">Free Music Archive (FMA) API</div>
+    <div class="api-desc">Discovery API for royalty-free music under Creative Commons. Used by the Royalty-Free Recommendation Engine to suggest music alternatives when audio IP conflicts are detected.</div>
+    <div class="api-url">https://freemusicarchive.org/api</div>
+  </div>
+
+  <div class="api-card">
+    <div class="api-name">Unsplash API</div>
+    <div class="api-desc">Source of royalty-free images for recommendation engine. When image IP conflict is detected, suggest visually similar free alternatives. 50 req/hour on free tier.</div>
+    <div class="api-url">https://unsplash.com/developers</div>
+  </div>
+
+  <div class="api-card">
+    <div class="api-name">SendGrid Email API</div>
+    <div class="api-desc">Transactional email for analysis completion notifications and report delivery. Free tier: 100 emails/day. Required env var: SENDGRID_API_KEY.</div>
+    <div class="api-url">https://docs.sendgrid.com/api-reference</div>
+  </div>
+</div>
+
+<div id="timeline" class="section">
+  <div class="section-sub">16-week delivery timeline across 6 phases. Aim to have a working demo at Week 8 (mid-point review).</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-week">Weeks 1–2</div>
+      <div class="tl-task">Phase 1: Setup & Auth</div>
+      <div class="tl-detail">Monorepo, Docker Compose, PostgreSQL, Alembic, JWT auth, React auth screens, GitHub Actions CI.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot now"></div>
+      <div class="tl-week">Weeks 3–4</div>
+      <div class="tl-task">Phase 2: File Ingestion</div>
+      <div class="tl-detail">Upload endpoint, MinIO storage, text extractors (PDF/DOCX/code), Celery + Redis task queue, React upload UI.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future"></div>
+      <div class="tl-week">Weeks 5–8</div>
+      <div class="tl-task">Phase 3: NLP & Similarity Engine</div>
+      <div class="tl-detail">Sentence-BERT embeddings, Elasticsearch KNN indexing, cosine similarity thresholds, copyright & code detection, image similarity with CLIP. → Mid-point demo milestone.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future"></div>
+      <div class="tl-week">Weeks 9–11</div>
+      <div class="tl-task">Phase 4: Patent Detection</div>
+      <div class="tl-detail">USPTO + EPO + WIPO integrations, patent relevance ranker, Redis caching, royalty-free recommendation engine.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future"></div>
+      <div class="tl-week">Weeks 12–14</div>
+      <div class="tl-task">Phase 5: Reports & Dashboard</div>
+      <div class="tl-detail">Risk report generator, WeasyPrint PDF export, jurisdiction mapping, React dashboard, Recharts visualizations, notification system.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot future"></div>
+      <div class="tl-week">Weeks 15–16</div>
+      <div class="tl-task">Phase 6: Testing & Deployment</div>
+      <div class="tl-detail">pytest + vitest test suites, OWASP security scan, Docker production configs, Vercel + Render deploy, Sentry monitoring, OpenAPI docs.</div>
+    </div>
+  </div>
+</div>
+
+<div id="risks" class="section">
+  <div class="section-sub">Known risks and mitigation strategies. Address high-severity items before starting the affected phase.</div>
+
+  <div class="risk-head">
+    <span>Risk</span><span>Severity</span><span>Mitigation</span>
+  </div>
+
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">USPTO/EPO/WIPO API rate limits block patent search in production</span>
+    <span><span class="sev h">High</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Implement Redis caching (TTL 24h), exponential backoff, and a job queue to serialize requests. Consider a local patent dataset snapshot for demo.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">BERT model inference too slow for real-time response</span>
+    <span><span class="sev h">High</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Use async Celery tasks — never block HTTP. Use MiniLM (80x smaller than BERT-large). Pre-compute & cache embeddings for known datasets. Quantize model with ONNX Runtime.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">Elasticsearch memory usage exceeds free-tier cloud limits</span>
+    <span><span class="sev m">Medium</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Run single-node Elasticsearch in Docker with heap capped at 512MB for dev. For production, consider Elastic Cloud free tier or self-host on a VPS.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">Image IP detection accuracy too low for reliable results</span>
+    <span><span class="sev m">Medium</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Set conservative thresholds and label low-confidence results explicitly. Use perceptual hash as a fast pre-filter before CLIP. Clearly communicate confidence levels in the UI.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">Legal disclaimer requirements — tool output misinterpreted as legal advice</span>
+    <span><span class="sev h">High</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Add a prominent disclaimer on every report: "This is an automated similarity check, not legal advice. Consult a qualified IP attorney for legal decisions." Include in PDF export header and UI.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">Large file uploads (PDFs, code ZIPs) timing out</span>
+    <span><span class="sev m">Medium</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Enforce 15MB upload limit. Use chunked streaming upload. Process entirely async via Celery. Return 202 Accepted immediately and poll via /jobs/{id} endpoint.</span>
+  </div>
+  <div class="risk-row">
+    <span style="font-size:13px;color:var(--color-text-primary)">Team GPU access limited for model fine-tuning</span>
+    <span><span class="sev l">Low</span></span>
+    <span style="font-size:12px;color:var(--color-text-secondary)">Use pre-trained models without fine-tuning for the IDP scope. Google Colab Pro (free tier) is sufficient for any needed experiments. Fine-tuning is a future enhancement.</span>
+  </div>
+</div>
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>{
+    if(t.getAttribute('onclick').includes("'"+id+"'"))t.classList.add('active');
+  });
+}
+</script>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LexaTrace — AI-powered copyright detection, patent search, and IP protection platform. Detect plagiarism, check code licenses, and scan patents instantly.">
+  <title>LexaTrace — AI-Powered Copyright Detection & IP Protection</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">⬡</div>
+      <span>Lexa<span class="gradient-text">Trace</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#upload">Analyze</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#upload" class="nav-cta">Start Scanning</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <span class="badge">🔬 AI-Powered IP Protection</span>
+    </div>
+    <h1>Protect Your<br><span class="gradient-text">Intellectual Property</span><br>Before It's Too Late</h1>
+    <p>LexaTrace uses advanced NLP and semantic AI to scan your content against global copyright databases, patent registries, and code licenses — in seconds.</p>
+    <div class="hero-buttons">
+      <a href="#upload" class="btn-primary">🚀 Start Free Analysis</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="animate-in">
+        <div class="hero-stat-value gradient-text" id="stat-docs">0</div>
+        <div class="hero-stat-label">Documents Analyzed</div>
+      </div>
+      <div class="animate-in">
+        <div class="hero-stat-value gradient-text" id="stat-patents">0</div>
+        <div class="hero-stat-label">Patents Searched</div>
+      </div>
+      <div class="animate-in">
+        <div class="hero-stat-value gradient-text" id="stat-accuracy">0%</div>
+        <div class="hero-stat-label">Detection Accuracy</div>
+      </div>
+      <div class="animate-in">
+        <div class="hero-stat-value gradient-text" id="stat-users">0</div>
+        <div class="hero-stat-label">Active Users</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="section-padding" id="features">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Core Capabilities</span>
+      <h2>Everything You Need to<br><span class="gradient-text">Protect Your Work</span></h2>
+      <p>Six powerful modules working together to provide comprehensive IP protection across text, code, images, and patents.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card animate-in">
+        <div class="feature-icon blue">📝</div>
+        <h3>Text Copyright Detection</h3>
+        <p>Semantic similarity analysis using BERT embeddings. Detects paraphrased content, not just exact matches. Supports PDF, DOCX, and TXT files.</p>
+      </div>
+      <div class="feature-card animate-in">
+        <div class="feature-icon violet">💻</div>
+        <h3>Code License Scanner</h3>
+        <p>AST-level fingerprinting for Python, JavaScript & Java. Detects GPL contamination and maps license compatibility (MIT, Apache, proprietary).</p>
+      </div>
+      <div class="feature-card animate-in">
+        <div class="feature-icon cyan">🖼️</div>
+        <h3>Image Similarity Check</h3>
+        <p>CLIP-powered visual similarity detection with perceptual hash fallback. Catches modified, cropped, and color-shifted copies of copyrighted images.</p>
+      </div>
+      <div class="feature-card animate-in">
+        <div class="feature-icon amber">🔍</div>
+        <h3>Patent Search Engine</h3>
+        <p>Cross-references your concepts against USPTO, EPO, and WIPO databases. Returns top matching patents with claim excerpts and jurisdiction info.</p>
+      </div>
+      <div class="feature-card animate-in">
+        <div class="feature-icon green">📊</div>
+        <h3>Risk Reports & PDF Export</h3>
+        <p>Comprehensive risk assessment with weighted scoring. Export detailed reports with match highlights, jurisdiction data, and legal references.</p>
+      </div>
+      <div class="feature-card animate-in">
+        <div class="feature-icon red">🎵</div>
+        <h3>Royalty-Free Alternatives</h3>
+        <p>When conflicts are found, automatically suggests legal alternatives from Free Music Archive, Unsplash, and SPDX-licensed repositories.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ UPLOAD ═══ -->
+<section class="section-padding" id="upload" style="background: rgba(0,0,0,0.2);">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Analyze</span>
+      <h2>Upload & <span class="gradient-text">Scan Instantly</span></h2>
+      <p>Drop your files and let our AI engine detect potential copyright issues across multiple content types.</p>
+    </div>
+    <div class="upload-area animate-in" id="upload-area">
+      <div class="upload-icon floating">☁️</div>
+      <h3>Drag & drop your files here</h3>
+      <p>or click to browse your computer</p>
+      <div class="upload-formats">
+        <span class="format-tag">PDF</span>
+        <span class="format-tag">DOCX</span>
+        <span class="format-tag">TXT</span>
+        <span class="format-tag">PNG/JPG</span>
+        <span class="format-tag">ZIP (Code)</span>
+        <span class="format-tag">MP3/WAV</span>
+      </div>
+      <button class="upload-btn" id="upload-btn">Select Files</button>
+      <input type="file" id="file-input" hidden multiple accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.zip,.mp3,.wav">
+    </div>
+
+    <div class="analysis-progress" id="analysis-progress">
+      <div class="progress-step" id="step-upload">
+        <div class="step-indicator">1</div>
+        <div class="step-info">
+          <h4>File Upload & Validation</h4>
+          <p>Validating file type and extracting content...</p>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar-upload"></div></div>
+        </div>
+      </div>
+      <div class="progress-step" id="step-extract">
+        <div class="step-indicator">2</div>
+        <div class="step-info">
+          <h4>Text Extraction & Chunking</h4>
+          <p>Splitting content into 512-token windows with overlap...</p>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar-extract"></div></div>
+        </div>
+      </div>
+      <div class="progress-step" id="step-embed">
+        <div class="step-indicator">3</div>
+        <div class="step-info">
+          <h4>Generating BERT Embeddings</h4>
+          <p>Creating semantic vectors with all-MiniLM-L6-v2...</p>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar-embed"></div></div>
+        </div>
+      </div>
+      <div class="progress-step" id="step-search">
+        <div class="step-indicator">4</div>
+        <div class="step-info">
+          <h4>KNN Similarity Search</h4>
+          <p>Querying Elasticsearch dense_vector index...</p>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar-search"></div></div>
+        </div>
+      </div>
+      <div class="progress-step" id="step-report">
+        <div class="step-indicator">5</div>
+        <div class="step-info">
+          <h4>Generating Risk Report</h4>
+          <p>Scoring matches and compiling recommendations...</p>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar-report"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DASHBOARD ═══ -->
+<section class="section-padding" id="dashboard">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Results</span>
+      <h2>Analysis <span class="gradient-text">Dashboard</span></h2>
+      <p>A sample analysis result showing how LexaTrace presents copyright detection findings.</p>
+    </div>
+    <div class="dashboard-preview animate-in">
+      <div class="dash-header">
+        <div>
+          <div class="dash-title">📄 research_paper_draft.pdf</div>
+          <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Analyzed 2 minutes ago · 12 pages · 8,421 words</div>
+        </div>
+        <span class="risk-badge medium">⚠️ Medium Risk</span>
+      </div>
+      <div class="dash-grid">
+        <div class="score-ring-container">
+          <div class="score-ring">
+            <svg viewBox="0 0 200 200" width="200" height="200">
+              <circle cx="100" cy="100" r="85" class="score-ring-bg"/>
+              <circle cx="100" cy="100" r="85" class="score-ring-fill" id="score-ring-fill"
+                stroke="url(#scoreGrad)" stroke-dasharray="534" stroke-dashoffset="534"/>
+              <defs>
+                <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f59e0b"/>
+                  <stop offset="100%" stop-color="#ef4444"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="score-ring-text">
+              <div class="score-number" id="score-value">0</div>
+              <div class="score-label">Risk Score</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;justify-content:center;margin-top:8px;">
+            <div style="text-align:center;">
+              <div style="font-size:20px;font-weight:700;color:var(--risk-high);">3</div>
+              <div style="font-size:11px;color:var(--text-muted);">High</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:20px;font-weight:700;color:var(--risk-medium);">5</div>
+              <div style="font-size:11px;color:var(--text-muted);">Medium</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:20px;font-weight:700;color:var(--risk-low);">8</div>
+              <div style="font-size:11px;color:var(--text-muted);">Low</div>
+            </div>
+          </div>
+        </div>
+        <div class="match-list">
+          <div class="match-item">
+            <div class="match-score high">94%</div>
+            <div class="match-details">
+              <div class="match-source">IEEE Trans. Pattern Analysis, Vol. 42</div>
+              <div class="match-type">Text · Section 3.2 — Methodology</div>
+            </div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:94%;background:var(--risk-high);"></div></div>
+          </div>
+          <div class="match-item">
+            <div class="match-score high">91%</div>
+            <div class="match-details">
+              <div class="match-source">arXiv:2304.12749 — Neural Style Transfer</div>
+              <div class="match-type">Text · Abstract & Introduction</div>
+            </div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:91%;background:var(--risk-high);"></div></div>
+          </div>
+          <div class="match-item">
+            <div class="match-score medium">82%</div>
+            <div class="match-details">
+              <div class="match-source">US Patent 10,234,567 — Image Processing</div>
+              <div class="match-type">Patent · Claim 1, Sub-claims 1a–1c</div>
+            </div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:82%;background:var(--risk-medium);"></div></div>
+          </div>
+          <div class="match-item">
+            <div class="match-score medium">78%</div>
+            <div class="match-details">
+              <div class="match-source">MIT-Licensed Repository: fast-style-tf</div>
+              <div class="match-type">Code · utils/transform.py — Lines 45–112</div>
+            </div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:78%;background:var(--risk-medium);"></div></div>
+          </div>
+          <div class="match-item">
+            <div class="match-score low">67%</div>
+            <div class="match-details">
+              <div class="match-source">Springer: Computer Vision & Applications</div>
+              <div class="match-type">Text · Chapter 8 — Feature Extraction</div>
+            </div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:67%;background:var(--risk-low);"></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn-primary" style="font-size:13px;padding:10px 20px;">📥 Export PDF Report</button>
+        <button class="btn-secondary" style="font-size:13px;padding:10px 20px;">📋 View Full Details</button>
+        <button class="btn-secondary" style="font-size:13px;padding:10px 20px;">🔄 Re-Analyze</button>
+        <button class="btn-secondary" style="font-size:13px;padding:10px 20px;">🎵 Find Alternatives</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section-padding" id="how-it-works" style="background:rgba(0,0,0,0.2);">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Process</span>
+      <h2>How <span class="gradient-text">LexaTrace</span> Works</h2>
+      <p>A five-step pipeline from upload to actionable report, powered by cutting-edge NLP.</p>
+    </div>
+    <div class="steps-timeline">
+      <div class="step-item animate-in">
+        <div class="step-number">1</div>
+        <div class="step-connector"></div>
+        <div class="step-content">
+          <h3>Upload Your Content</h3>
+          <p>Upload documents (PDF, DOCX, TXT), source code (ZIP), images (PNG/JPG), or audio files. We support files up to 15MB with automatic format detection and MIME validation.</p>
+        </div>
+      </div>
+      <div class="step-item animate-in">
+        <div class="step-number">2</div>
+        <div class="step-connector"></div>
+        <div class="step-content">
+          <h3>Extract & Chunk</h3>
+          <p>Our pipeline extracts text using pdfminer, python-docx, and pygments. Content is split into 512-token windows with 50-token overlap for thorough coverage.</p>
+        </div>
+      </div>
+      <div class="step-item animate-in">
+        <div class="step-number">3</div>
+        <div class="step-connector"></div>
+        <div class="step-content">
+          <h3>Generate Embeddings</h3>
+          <p>Each chunk is encoded with sentence-transformers (all-MiniLM-L6-v2) into semantic vector space. Images are processed through CLIP (ViT-B/32) for visual similarity.</p>
+        </div>
+      </div>
+      <div class="step-item animate-in">
+        <div class="step-number">4</div>
+        <div class="step-connector"></div>
+        <div class="step-content">
+          <h3>Search & Match</h3>
+          <p>Embeddings are queried against our Elasticsearch KNN index and patent databases (USPTO, EPO, WIPO). Cosine similarity scoring with calibrated thresholds identifies matches.</p>
+        </div>
+      </div>
+      <div class="step-item animate-in">
+        <div class="step-number">5</div>
+        <div class="step-connector"></div>
+        <div class="step-content">
+          <h3>Report & Recommend</h3>
+          <p>A comprehensive risk report is generated with overall scores, match details, jurisdiction mapping (US/EU/Global), legal references, and royalty-free alternatives. Export as PDF instantly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECH STACK ═══ -->
+<section class="section-padding" id="tech-stack">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Technology</span>
+      <h2>Built With <span class="gradient-text">Modern Stack</span></h2>
+      <p>Enterprise-grade technologies ensuring speed, accuracy, and scalability.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-item animate-in"><div class="tech-icon">⚡</div><div class="tech-name">FastAPI</div><div class="tech-desc">Backend Framework</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">⚛️</div><div class="tech-name">React + Vite</div><div class="tech-desc">Frontend</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">🧠</div><div class="tech-name">Sentence-BERT</div><div class="tech-desc">Text Embeddings</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">🔎</div><div class="tech-name">Elasticsearch</div><div class="tech-desc">KNN Vector Search</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">🐘</div><div class="tech-name">PostgreSQL</div><div class="tech-desc">Primary Database</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">🐳</div><div class="tech-name">Docker</div><div class="tech-desc">Containerization</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">🔴</div><div class="tech-name">Redis + Celery</div><div class="tech-desc">Task Queue</div></div>
+      <div class="tech-item animate-in"><div class="tech-icon">👁️</div><div class="tech-name">CLIP (ViT-B/32)</div><div class="tech-desc">Image Similarity</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="section-padding" id="pricing" style="background:rgba(0,0,0,0.2);">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="badge">Plans</span>
+      <h2>Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+      <p>Choose the plan that fits your IP protection needs.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card animate-in">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">Free</div>
+        <div class="pricing-period">Forever</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 10 scans / month</li>
+          <li><span class="check">✓</span> Text copyright detection</li>
+          <li><span class="check">✓</span> Basic risk report</li>
+          <li><span class="check">✓</span> 5MB file limit</li>
+          <li><span style="color:var(--text-muted);">✗</span> Patent search</li>
+          <li><span style="color:var(--text-muted);">✗</span> API access</li>
+        </ul>
+        <a href="#upload" class="btn-secondary" style="display:block;text-align:center;">Get Started</a>
+      </div>
+      <div class="pricing-card featured animate-in">
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price gradient-text">$29</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 200 scans / month</li>
+          <li><span class="check">✓</span> All detection modules</li>
+          <li><span class="check">✓</span> Patent search (USPTO + EPO)</li>
+          <li><span class="check">✓</span> PDF report export</li>
+          <li><span class="check">✓</span> 15MB file limit</li>
+          <li><span class="check">✓</span> Email notifications</li>
+        </ul>
+        <a href="#upload" class="btn-primary" style="display:block;text-align:center;">Start Free Trial</a>
+      </div>
+      <div class="pricing-card animate-in">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price">$99</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Unlimited scans</li>
+          <li><span class="check">✓</span> All detection + WIPO</li>
+          <li><span class="check">✓</span> REST API + webhooks</li>
+          <li><span class="check">✓</span> Batch analysis</li>
+          <li><span class="check">✓</span> Slack integration</li>
+          <li><span class="check">✓</span> Priority support</li>
+        </ul>
+        <a href="#upload" class="btn-secondary" style="display:block;text-align:center;">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section-padding" style="text-align:center;">
+  <div class="container animate-in">
+    <h2 style="font-size:40px;font-weight:700;margin-bottom:16px;">Ready to <span class="gradient-text">Protect Your IP</span>?</h2>
+    <p style="font-size:16px;color:var(--text-secondary);max-width:500px;margin:0 auto 32px;">Join thousands of creators, developers, and legal teams using LexaTrace to safeguard their intellectual property.</p>
+    <a href="#upload" class="btn-primary" style="font-size:16px;padding:16px 40px;">🚀 Start Free Analysis Now</a>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:16px;">No credit card required · 10 free scans/month</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:8px;">
+          <div class="nav-logo-icon">⬡</div>
+          <span>Lexa<span class="gradient-text">Trace</span></span>
+        </a>
+        <p>AI-powered copyright detection and intellectual property protection platform. Built by the AI & ML Dept, BMS Institute of Technology and Management.</p>
+        <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">⚠️ This tool provides automated similarity analysis, not legal advice. Consult a qualified IP attorney for legal decisions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#upload">Upload & Scan</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">API Documentation</a>
+        <a href="#">Integration Guide</a>
+        <a href="#">Patent Databases</a>
+        <a href="#">License Reference</a>
+      </div>
+      <div class="footer-col">
+        <h4>Team</h4>
+        <a href="#">Nandan N</a>
+        <a href="#">Athul Nayak G</a>
+        <a href="#">BS Sujanna Reddy</a>
+        <a href="#">Karun Reddy C</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025–26 LexaTrace · IDP Project · BMS Institute of Technology and Management
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
